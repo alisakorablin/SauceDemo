@@ -8,6 +8,7 @@ public class LocatorTest extends BaseTest{
         driver.get("https://www.saucedemo.com");
         driver.findElement(By.id("user-name"));
         driver.findElement(By.name("user-name"));
+
         driver.findElement(By.className("error-message-container"));
         driver.findElement(By.tagName("div"));
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
