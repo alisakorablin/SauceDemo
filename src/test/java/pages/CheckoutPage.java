@@ -17,20 +17,22 @@ public class CheckoutPage extends pages.BasePage{
     private static final By CONTINUE_BUTTON = By.id("continue");
     private static final By FINISH_BUTTON = By.xpath("//button[@id='finish']");
     private static final By CHECKOUT_TITLE = By.cssSelector("[data-test = title]");
+    private static final By FIRST_NAME_FIELD = By.id("first-name");
+    private static final By LAST_NAME_FIELD = By.id("last-name");
+    private static final By POSTAL_CODE_FIELD = By.id("postal-code");
 
-    public void continueCheckout(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(By.id("first-name"))).sendKeys("test");
-        wait.until(ExpectedConditions.elementToBeClickable(By.id("last-name"))).sendKeys("test");
-        wait.until(ExpectedConditions.elementToBeClickable(By.id("postal-code"))).sendKeys("111");
-        wait.until(ExpectedConditions.elementToBeClickable(CONTINUE_BUTTON)).click();
+    public void continueCheckout(String firstName, String lastName, String postalCode){
+        driver.findElement(FIRST_NAME_FIELD).sendKeys(firstName);
+        driver.findElement(LAST_NAME_FIELD).sendKeys(lastName);
+        driver.findElement(POSTAL_CODE_FIELD).sendKeys(postalCode);
+        driver.findElement(CONTINUE_BUTTON).click();
     }
 
-    public void finishCheckout(){
+    public static void finishCheckout(){
         driver.findElement(FINISH_BUTTON).click();
     }
 
-    public String getTitle() {
+    public static String getTitle() {
         return driver.findElement(CHECKOUT_TITLE).getText();
     }
 }

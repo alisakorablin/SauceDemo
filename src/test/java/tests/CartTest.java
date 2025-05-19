@@ -3,49 +3,54 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static pages.CartPage.*;
+import static pages.LoginPage.login;
+import static pages.ProductsPage.addProduct;
+import static pages.ProductsPage.openCart;
+
 
 public class CartTest extends BaseTest{
 
     @Test
     public void checkAddingItemInShoppingCart(){
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.addProduct("Sauce Labs Backpack");
-        productsPage.openCart();
-        Assert.assertEquals(cartPage.getTitle(), "Your Cart",
+        login("standard_user", "secret_sauce");
+        addProduct("Sauce Labs Backpack");
+        openCart();
+        Assert.assertEquals(getTitle(), "Your Cart",
                 "Должна отображаться страница корзины");
     }
 
     @Test
     public void checkReturnToHomePageByContinueShoppingButton(){
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        cartPage.openCartPage();
+        login("standard_user", "secret_sauce");
+        openCartPage();
         cartPage.openHomePageByContinueShoppingButton();
-        Assert.assertEquals(productsPage.getTitle(), "Products",
+        Assert.assertEquals(getTitle(), "Products",
                 "Должна отображаться хоум пейдж с айтемами");
     }
 
     @Test
     public void checkCheckout(){
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.addProduct("Sauce Labs Backpack");
-        productsPage.openCart();
-        cartPage.checkout();
-        Assert.assertEquals(productsPage.getTitle(), "Checkout: Your Information",
+        login("standard_user", "secret_sauce");
+        addProduct("Sauce Labs Backpack");
+        openCart();
+        checkout();
+        Assert.assertEquals(getTitle(), "Checkout: Your Information",
                 "Должна отображаться чекаут пейдж");
     }
 
     @Test
     public void checkReturnToHomePageByClickingToItem(){
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.addProduct("Sauce Labs Bike Light");
-        productsPage.openCart();
-        cartPage.itemsInCart("Sauce Labs Bike Light");
-        cartPage.backToProductsButton();
-        Assert.assertEquals(productsPage.getTitle(), "Products",
+        login("standard_user", "secret_sauce");
+        addProduct("Sauce Labs Bike Light");
+        openCart();
+        itemsInCart("Sauce Labs Bike Light");
+        backToProductsButton();
+        Assert.assertEquals(getTitle(), "Products",
                 "Должна отображаться хоум пейдж с айтемами");
     }
 }

@@ -3,16 +3,19 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static pages.LoginPage.login;
+import static pages.ProductsPage.*;
+
 public class BurgerMenuTest extends BaseTest{
 
     @Test
     public void checkAllItemsFromBurgerMenu(){
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.openCart();
-        productsPage.openBurgerMenu();
-        productsPage.openAllItemsFromBurgerMenu();
-        Assert.assertEquals(productsPage.getTitle(), "Products",
+        login("standard_user", "secret_sauce");
+        openCart();
+        openBurgerMenu();
+        openAllItemsFromBurgerMenu();
+        Assert.assertEquals(getTitle(), "Products",
                 "Должна отображаться хоум пейдж с айтемами");
     }
 }

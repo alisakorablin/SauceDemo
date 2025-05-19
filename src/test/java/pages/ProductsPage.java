@@ -16,23 +16,23 @@ public class ProductsPage extends pages.BasePage {
     private static final By BURGER_MENU_BUTTON = By.xpath("//button[@id='react-burger-menu-btn']");
     private static final By ALL_ITEMS_BUTTON = By.id("inventory_sidebar_link");
 
-    public String getTitle() {
+    public static String getTitle() {
         return driver.findElement(TITLE).getText();
     }
 
-    public void addProduct(String product) {
+    public static void addProduct(String product) {
         driver.findElement(By.xpath(String.format(ADD_TO_CART_PATTERN, product))).click();
     }
 
-    public void openCart() {
+    public static void openCart() {
         driver.findElement(CART_BUTTON).click();
     }
 
-    public void openBurgerMenu() {
+    public static void openBurgerMenu() {
         driver.findElement(BURGER_MENU_BUTTON).click();
     }
 
-    public void openAllItemsFromBurgerMenu() {
+    public static void openAllItemsFromBurgerMenu() {
         driver.findElement(ALL_ITEMS_BUTTON).click();
     }
 }

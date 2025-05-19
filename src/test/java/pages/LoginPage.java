@@ -18,13 +18,13 @@ public class LoginPage extends pages.BasePage {
         driver.get(BASE_URL);
     }
 
-    public void login(String user, String password){
+    public static void login(String user, String password){
         driver.findElement(USER_NAME_FILED).sendKeys(user);
         driver.findElement(PASSWORD_FILED).sendKeys(password);
         driver.findElement(LOGIN_BUTTON).click();
     }
 
-    public String getErrorMessage(){
+    public static String getErrorMessage(){
         return driver.findElement(ERROR_MESSAGE).getText();
     }
 }

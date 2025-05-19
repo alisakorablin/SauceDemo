@@ -17,11 +17,11 @@ public class CartPage extends pages.BasePage{
     private static final By CHECKOUT_BUTTON = By.xpath("//button[@id='checkout']");
     private static final By BACK_TO_PRODUCTS_BUTTON = By.xpath("//button[@id='back-to-products']");
 
-    public void openCartPage() {
+    public static void openCartPage() {
         driver.get(CART_URL);
     }
 
-    public String getTitle() {
+    public static String getTitle() {
         return driver.findElement(CART_TITLE).getText();
     }
 
@@ -29,15 +29,15 @@ public class CartPage extends pages.BasePage{
         driver.findElement(CONTINUE_BUTTON).click();
     }
 
-    public void checkout(){
+    public static void checkout(){
         driver.findElement(CHECKOUT_BUTTON).click();
     }
 
-    public void itemsInCart(String item) {
+    public static void itemsInCart(String item) {
         driver.findElement(By.xpath(String.format(OPEN_ITEM_IN_CART_PATTERN, item))).click();
     }
 
-    public void backToProductsButton(){
+    public static void backToProductsButton(){
         driver.findElement(BACK_TO_PRODUCTS_BUTTON).click();
     }
 }
